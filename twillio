@@ -1,0 +1,79 @@
+import requests
+import png
+from bs4 import BeautifulSoup
+import base64
+from PIL import Image
+import numpy as np
+
+req = requests.get('https://ptsv2.com/t/synopsysmeter_1')
+
+w = 35
+h = 189
+
+ptskeys = []
+lastnine = []
+basetobinary = []
+tdlist = []
+final = ""
+
+z = req.text
+#print("\nSome text from the we page \n",z)
+
+soup = BeautifulSoup(z, 'html.parser')
+
+#print(soup)
+
+for tbody in soup.find_all('tbody'):
+    for tr in tbody.find_all('tr'):
+        tds = tr.find_all('td')
+        ptskeys.append(tds[0].text)
+lastnine = ptskeys[-8:-1]
+print(lastnine)
+print("\n")
+
+
+for uk in lastnine:
+    url = 'https://ptsv2.com/t/synopsysmeter_1/d/' + uk
+    req2 = requests.get(url)
+    y = req2.text
+    reqsoup = BeautifulSoup(y, 'html.parser')
+    tdlistvalue = reqsoup.find_all('td')
+    del tdlistvalue[0:31]
+    del tdlistvalue[1:]
+    tdlistvalue = (tdlistvalue[0].text).strip()
+    tdlist.append(tdlistvalue)
+#print(tdlist)
+
+
+
+arr_2d = np.zeros((w, h), dtype=np.uint8)
+
+arr2dinteger = np.zeros((w, h), dtype=np.uint8)
+
+
+for convert in tdlist:
+    lol = str(convert).encode("ascii")
+    decoded = base64.decodebytes(lol)
+    line = ("".join(["{:08b}".format(x) for x in decoded]))
+    #print(line)
+    final = final + line
+
+final = list(final)
+del final[6615:]
+print(final)
+arr = np.array(list(final))
+
+arr_2d = np.reshape(arr, (w, h))
+print(arr_2d)
+
+for x in range(w):
+    for y in range(h):
+        if arr_2d[x,y] == '1':
+            arr2dinteger[x,y] = 255
+        else:
+            arr2dinteger[x,y] = 0
+
+
+img = Image.fromarray(arr2dinteger, 'L')
+img.save('my.png')
+img.show()
