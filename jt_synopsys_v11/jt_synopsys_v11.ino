@@ -1,3 +1,5 @@
+# jt_synopsys_v11 is used to tune the camera to read the enitre photo in order to determine where to crop to focus on the meter reading.
+
 #include <Wire.h>
 #include <ArduCAM.h>
 #include <SPI.h>
