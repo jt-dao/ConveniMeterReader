@@ -1,5 +1,5 @@
 # EasyMeter
-## ConveniMeterReader - Adaptable and Affordable Home Smart Meter Using IoT
+## ConveniMeterReader - IoT Adaptable and Affordable Home Smart Meter
 
 Thank you for vieweing my project! For the latest code, please visit "jt_synopsys_v13.ino" and "finaltest.py"
 
