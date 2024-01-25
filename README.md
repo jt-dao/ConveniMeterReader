@@ -1,8 +1,7 @@
-# EasyMeter
-## ConveniMeterReader - IoT Adaptable and Affordable Home Smart Meter
+# ConveniMeterReader - IoT Adaptable and Affordable Home Smart Meter
 
 ### Video - https://youtu.be/wf8FKwMM9lA?si=EX6mRhbgsl53til4
-### Slides - https://docs.google.com/presentation/d/1XeGvnMrkuweRrEzKC918s6qJS23TD5gN-4NY_v1xgeQ/edit?usp=sharing
+### Slides - https://shorturl.at/ovzV2
 
 Thank you for vieweing my project! For the latest code, please visit "jt_synopsys_v13.ino" and "finaltest.py"
 
